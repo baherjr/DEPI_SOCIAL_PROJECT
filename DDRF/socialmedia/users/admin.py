@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import CustomUser, Post
+from .models import User
 
-admin.site.register(CustomUser)
-admin.site.register(Post)
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('email', 'Fname', 'Lname')
+    search_fields = ('email', 'Fname', 'Lname')
