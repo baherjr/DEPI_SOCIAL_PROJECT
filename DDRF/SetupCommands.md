@@ -1,4 +1,4 @@
-#Setup Commands to run the project
+# Setup Commands to run the project
 
---pip install -r requirments.txt
---py manage.py runserver
+- pip install -r requirments.txt
+- py manage.py runserver
