@@ -4,3 +4,7 @@
 
 - pip install -r requirments.txt
 - py manage.py runserver
+
+
+# *to show all the migrations*
+- python manage.py showmigrations
