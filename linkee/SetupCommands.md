@@ -6,5 +6,8 @@
 - py manage.py runserver
 
 
-# *to show all the migrations*
+# to show all the migrations
 - python manage.py showmigrations
+
+# to run server
+- python manage.py runserver
