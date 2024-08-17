@@ -48,17 +48,17 @@ class SearchView(View):
             Q(email__icontains=query) |
             Q(first_name__icontains=query) |
             Q(last_name__icontains=query)
-        ).values('id', 'username', 'email', 'first_name', 'last_name')
+        )
 
         # Search in groups
         group_results = Group.objects.filter(
             Q(name__icontains=query)
-        ).values('id', 'name')
+        )
 
-        # Combine results
-        results = {
-            'users': list(user_results),
-            'groups': list(group_results)
+        context = {
+            'users': user_results,
+            'groups': group_results,
+            'query': query
         }
 
-        return JsonResponse(results)
+        return render(request, 'accounts/search_results.html', context)

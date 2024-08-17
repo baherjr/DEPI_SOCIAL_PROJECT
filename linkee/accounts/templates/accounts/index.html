@@ -59,20 +59,11 @@
     </script>
     <div>
     <h2>Search</h2>
-    <input type="text" id="searchQuery" placeholder="Enter search term">
-    <button onclick="search()">Search</button>
-    <pre id="searchOutput"></pre>
+    <form action="{% url 'search' %}" method="get">
+        <input type="text" name="q" id="searchQuery" placeholder="Enter search term">
+        <button type="submit">Search</button>
+    </form>
 </div>
-
-<script>
-    function search() {
-        const query = document.getElementById('searchQuery').value;
-        fetch(apiBase + 'search/?q=' + query)
-            .then(response => response.json())
-            .then(data => document.getElementById('searchOutput').innerText = JSON.stringify(data, null, 2))
-            .catch(error => console.error('Error:', error));
-    }
-</script>
 
 </body>
 </html>
