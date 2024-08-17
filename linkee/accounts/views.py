@@ -4,6 +4,7 @@ from django.views import View
 from django.core import serializers
 from django.forms.models import model_to_dict
 from django.shortcuts import render
+from django.db.models import Q
 
 
 def index(request):
@@ -36,3 +37,28 @@ class GroupDetailView(View):
             return JsonResponse(model_to_dict(group))
         except Group.DoesNotExist:
             return HttpResponse(status=404)
+
+class SearchView(View):
+    def get(self, request):
+        query = request.GET.get('q', '')
+
+        # Search in users
+        user_results = User.objects.filter(
+            Q(username__icontains=query) |
+            Q(email__icontains=query) |
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query)
+        ).values('id', 'username', 'email', 'first_name', 'last_name')
+
+        # Search in groups
+        group_results = Group.objects.filter(
+            Q(name__icontains=query)
+        ).values('id', 'name')
+
+        # Combine results
+        results = {
+            'users': list(user_results),
+            'groups': list(group_results)
+        }
+
+        return JsonResponse(results)
