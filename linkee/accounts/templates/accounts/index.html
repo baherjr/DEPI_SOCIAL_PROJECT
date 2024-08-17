@@ -3,67 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Users and Groups API</title>
+    <title>User API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container h2 {
+            margin-bottom: 10px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f8f9fa;
+        }
+    </style>
 </head>
 <body>
-    <h1>Test Users and Groups API</h1>
-
-    <div>
-        <h2>Users</h2>
-        <button onclick="getUsers()">Get All Users</button>
-        <button onclick="getUser()">Get User by ID</button>
-        <input type="number" id="userId" placeholder="Enter User ID">
-        <pre id="userOutput"></pre>
+    <div class="form-container">
+        <h2>Create User</h2>
+        <input type="text" id="createUsername" placeholder="Username" required>
+        <input type="password" id="createPassword" placeholder="Password" required>
+        <input type="email" id="createEmail" placeholder="Email" required>
+        <button onclick="createUser()">Create User</button>
+        <div id="createResult" class="result"></div>
     </div>
 
-    <div>
-        <h2>Groups</h2>
-        <button onclick="getGroups()">Get All Groups</button>
-        <button onclick="getGroup()">Get Group by ID</button>
-        <input type="number" id="groupId" placeholder="Enter Group ID">
-        <pre id="groupOutput"></pre>
+    <div class="form-container">
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="loginUser()">Login</button>
+        <div id="loginResult" class="result"></div>
     </div>
 
     <script>
-        const apiBase = '/api/';
+        const apiBase = 'http://127.0.0.1:8000/api/';
 
-        function getUsers() {
-            fetch(apiBase + 'users/')
-                .then(response => response.json())
-                .then(data => document.getElementById('userOutput').innerText = JSON.stringify(data, null, 2))
-                .catch(error => console.error('Error:', error));
+        function createUser() {
+            const username = document.getElementById('createUsername').value;
+            const password = document.getElementById('createPassword').value;
+            const email = document.getElementById('createEmail').value;
+
+            fetch(apiBase + 'create_user/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${username}&password=${password}&email=${email}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('createResult').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
         }
 
-        function getUser() {
-            const userId = document.getElementById('userId').value;
-            fetch(apiBase + 'users/' + userId + '/')
-                .then(response => response.json())
-                .then(data => document.getElementById('userOutput').innerText = JSON.stringify(data, null, 2))
-                .catch(error => console.error('Error:', error));
-        }
+        function loginUser() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
 
-        function getGroups() {
-            fetch(apiBase + 'groups/')
-                .then(response => response.json())
-                .then(data => document.getElementById('groupOutput').innerText = JSON.stringify(data, null, 2))
-                .catch(error => console.error('Error:', error));
-        }
-
-        function getGroup() {
-            const groupId = document.getElementById('groupId').value;
-            fetch(apiBase + 'groups/' + groupId + '/')
-                .then(response => response.json())
-                .then(data => document.getElementById('groupOutput').innerText = JSON.stringify(data, null, 2))
-                .catch(error => console.error('Error:', error));
+            fetch(apiBase + 'login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${username}&password=${password}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loginResult').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
         }
     </script>
-    <div>
-    <h2>Search</h2>
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="q" id="searchQuery" placeholder="Enter search term">
-        <button type="submit">Search</button>
-    </form>
-</div>
-
 </body>
 </html>

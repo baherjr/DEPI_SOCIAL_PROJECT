@@ -5,6 +5,11 @@ from django.core import serializers
 from django.forms.models import model_to_dict
 from django.shortcuts import render
 from django.db.models import Q
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
+
+
+
 
 
 def index(request):
@@ -62,3 +67,43 @@ class SearchView(View):
         }
 
         return render(request, 'accounts/search_results.html', context)
+    
+
+class CreateUserView(View):
+    def post(self, request):
+        # Parse data from request
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+
+        # Check if the user already exists
+        if User.objects.filter(username=username).exists():
+            return JsonResponse({'error': 'Username already exists'}, status=400)
+
+        # Create the user
+        user = User.objects.create(
+            username=username,
+            email=email,
+            password=make_password(password)
+        )
+
+        return JsonResponse({'message': 'User created successfully', 'user_id': user.id})
+
+
+class LoginView(View):
+    def post(self, request):
+        # Parse data from request
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Authenticate user
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            # Log the user in
+            login(request, user)
+            return JsonResponse({'message': 'Login successful', 'user_id': user.id})
+        else:
+            return JsonResponse({'error': 'Invalid username or password'}, status=400)
+        
+
