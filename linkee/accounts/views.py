@@ -3,6 +3,11 @@ from django.http import JsonResponse, HttpResponse
 from django.views import View
 from django.core import serializers
 from django.forms.models import model_to_dict
+from django.shortcuts import render
+
+
+def index(request):
+    return render(request, 'accounts/index.html')
 
 class UserListView(View):
     def get(self, request):

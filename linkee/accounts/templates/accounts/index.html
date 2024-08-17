@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Users and Groups API</title>
+</head>
+<body>
+    <h1>Test Users and Groups API</h1>
+
+    <div>
+        <h2>Users</h2>
+        <button onclick="getUsers()">Get All Users</button>
+        <button onclick="getUser()">Get User by ID</button>
+        <input type="number" id="userId" placeholder="Enter User ID">
+        <pre id="userOutput"></pre>
+    </div>
+
+    <div>
+        <h2>Groups</h2>
+        <button onclick="getGroups()">Get All Groups</button>
+        <button onclick="getGroup()">Get Group by ID</button>
+        <input type="number" id="groupId" placeholder="Enter Group ID">
+        <pre id="groupOutput"></pre>
+    </div>
+
+    <script>
+        const apiBase = '/api/';
+
+        function getUsers() {
+            fetch(apiBase + 'users/')
+                .then(response => response.json())
+                .then(data => document.getElementById('userOutput').innerText = JSON.stringify(data, null, 2))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function getUser() {
+            const userId = document.getElementById('userId').value;
+            fetch(apiBase + 'users/' + userId + '/')
+                .then(response => response.json())
+                .then(data => document.getElementById('userOutput').innerText = JSON.stringify(data, null, 2))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function getGroups() {
+            fetch(apiBase + 'groups/')
+                .then(response => response.json())
+                .then(data => document.getElementById('groupOutput').innerText = JSON.stringify(data, null, 2))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function getGroup() {
+            const groupId = document.getElementById('groupId').value;
+            fetch(apiBase + 'groups/' + groupId + '/')
+                .then(response => response.json())
+                .then(data => document.getElementById('groupOutput').innerText = JSON.stringify(data, null, 2))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
