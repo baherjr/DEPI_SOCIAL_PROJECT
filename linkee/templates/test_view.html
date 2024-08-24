@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include 'text_header.html' %}
+</head>
+<body>
+    <h1>Your Profile</h1>
+  <p><b>Username:</b> {{ user.username }}</p>
+  <p><b>Full Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
+  <p><b>Bio:</b> {{ profile.bio }}</p>
+  {% if profile.profileimg.url %}
+    <p><b>Profile Picture:</b> <img src="{{ profile.profileimg.url }}" alt="Profile Picture"></p>
+  {% else %}
+    <p>No profile picture available.</p>
+  {% endif %}
+  <p><b>Location:</b> {{ profile.location }}</p>
+
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

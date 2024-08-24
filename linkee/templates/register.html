@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'text_header.html' %}
+    <link rel="stylesheet" href="{% static 'css/register_form.css' %}">
+    <title>linkee - Register</title>
+</head>
+<body>
+    <div class="section">
+        <!-- <form class="form" method="post">
+            <p class="form-title">Join Linkee family</p>
+             <div class="input-container">
+                <input type="text" placeholder="Full name">
+            </div>
+            <div class="input-container">
+                <input type="email" placeholder="Enter email">
+                <span>
+                </span>
+            </div>
+            <div class="input-container">
+                <input type="password" placeholder="Enter password">
+            </div>
+            <div class="input-container">
+                <input type="password2" placeholder="Re-Enter password">
+            </div>
+            <div class="input-container">
+                <input type="date" id="birthdate" name="birthdate">
+            </div>
+            <button type="submit" class="submit">Register</button>
+            {% csrf_token %}
+            <div class="input-container">
+                {{ form.full_name }}
+            </div>
+
+            <div class="input-container">
+                {{ form.email }}
+                <span></span>
+            </div>
+
+            <div class="input-container">
+                {{ form.password1 }}
+            </div>
+
+            <div class="input-container">
+                {{ form.password2 }}
+            </div>
+
+            <div class="input-container">
+                {{ form.birth_date }}
+            </div>
+            <button type="submit" class="submit">Register</button>
+            <p class="signup-link">Already have an account?<a href="{% url 'login' %}">Sign in</a></p>
+        </form> -->
+        <form action="" method="POST" class="form">
+            <p class="form-title">Join Linkee family</p>
+            {% csrf_token %}
+            <div class="input-container"><input type="text" name="fullname" placeholder="Full Name"></div>
+            <div class="input-container"><input type="text" name="username" placeholder="Username"></div>
+            <div class="input-container"><input type="email" name="email" placeholder="Email"></div>
+            <div class="input-container"><input type="password" name="password" placeholder="Password"></div>
+            <div class="input-container"><input type="password" name="password2" placeholder="Confirm Password"></div>
+            <div class="input-container"><input type="date" name="birthdate" placeholder="Birth Date"></div>
+            <button type="submit" class="submit">Register</button>
+            <p class="signup-link">Already have an account?<a href="{% url 'login' %}">Sign in</a></p>
+        </form>
+    </div>
+</body>
+</html>

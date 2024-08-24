@@ -1,0 +1,194 @@
+/* Import external CSS files */
+@import url('navbar__.css');
+@import url('widgits.css');
+@import url('home_feed.css');
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Body Styles */
+body {
+  display: flex;
+  height: 100vh;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
+
+/* Feed Styles */
+.feed {
+  flex: 0.5;
+  min-width: fit-content;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* For IE and Edge */
+  scrollbar-width: none; /* For Firefox */
+}
+
+.feed::-webkit-scrollbar {
+  display: none; /* For WebKit browsers like Chrome and Safari */
+}
+
+.feed__header {
+  position: sticky;
+  top: 0;
+  background-color: var(--bgColor);
+  z-index: 100;
+  border-bottom: 1px solid var(--txtColor);
+  padding: 15px 20px;
+}
+
+.feed__header h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+.profile{
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 1px solid var(--txtColor);
+    padding-bottom: 10px;
+}
+.profile-data{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 20px;
+    gap: 7.5px;
+}
+.profile-img{
+    width: 150px;
+    border-radius: 50%;
+}
+.big{
+    font-size: 1rem;
+}
+.bio{
+    font-size: 0.8rem;
+}
+.friends-counts{
+    background: none;
+    color: var(--txtColor);
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    font-size: 1.1rem;
+    text-align: start;
+}
+.bold{
+    font-weight: bolder;
+}
+/* modals */
+.popup, .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000000000;
+    display: none;
+}
+.popup .modal-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    background-color: var(--sColor);
+    width: 450px;
+    /* height: 220px; */
+    z-index: 1000000001;
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.popup .close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--bgColor);
+    color: var(--txtColor);
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.popup.active{
+    display: block;
+}
+.popup.active .modal-content{
+    transition: all 800ms ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.birth-icon{
+  font-size: 1rem !important;
+}
+
+.extra-data{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 70%;
+}
+
+.friend-search, .friend-search input{
+  background-color: var(--lighthover);
+  color: var(--lighttxt) ;
+}
+
+.friend-search input:active, .friend-search input:hover, .friend-search input:focus {
+  border: none;
+  outline: none;
+  background-color: var(--lighthover);
+  color: var(--lighttxt) ;
+}
+
+.friend-list{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.friend{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.frnd-data{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.frnd-img{
+  width: 40px;
+  border-radius: 50%;
+}
+
+#posts-container{
+  margin: 0;
+  padding: 0;
+}

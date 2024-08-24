@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linkee</title>
+    {% include 'text_header.html' %}
+    <link rel="stylesheet" href="{% static 'css/home_feed.css' %}">
+  </head>
+  <body>
+    <!-- sidebar starts -->
+    {% include 'sidebar_homefeed.html' %}
+    <!-- sidebar ends -->
+
+    <!-- feed starts -->
+    <div class="feed">
+      <div class="feed__header">
+        <h2>Home</h2>
+      </div>
+
+      <!-- tweetbox starts -->
+      <div class="tweetBox">
+        <form method="post" action="{% url 'create_post' %}">
+            {% csrf_token %}
+            <div class="tweetbox__input">
+                <img src="{{ profile.profileimg.url }}" alt="User Profile Image" />
+                <input type="text" name="postContent" placeholder="What's happening?" required />
+            </div>
+            <button type="submit" class="tweetBox__tweetButton">Tweet</button>
+        </form>
+    </div>    
+      <!-- tweetbox ends -->
+      <div id="posts-container">
+
+      </div>
+    </div>
+    <!-- feed ends -->
+
+    <!-- widgets starts -->
+    <div class="widgets">
+      <form method="post" class="widgets__input">
+        <span class="material-icons widgets__searchIcon"> search </span>
+        <input type="text" placeholder="Search Linkee" />
+      </form>
+
+      <div class="widgets__widgetContainer">
+        <h2>What's happening</h2>
+        <div class="notifications">
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widgets__widgetContainer">
+        <h2>Who to follow</h2>
+        <div id="friend-requests-container" class="friend-requests">
+          <!-- <div class="frnd-rqst">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <button class="btn acpt">Accept</button>
+            <button class="btn rjct">Reject</button>
+          </div>
+          <div class="frnd-rqst">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <button class="btn acpt">Accept</button>
+            <button class="btn rjct">Reject</button>
+          </div>
+          <div class="frnd-rqst">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <button class="btn acpt">Accept</button>
+            <button class="btn rjct">Reject</button>
+          </div>
+          <div class="frnd-rqst">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <button class="btn acpt">Accept</button>
+            <button class="btn rjct">Reject</button>
+          </div>
+          <div class="frnd-rqst">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <button class="btn acpt">Accept</button>
+            <button class="btn rjct">Reject</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- widgets ends -->
+     <script src="{% static 'js/homeFeed__.js' %}"></script>
+     <script src="{% static 'js/all_.js' %}"></script>
+  </body>
+</html>

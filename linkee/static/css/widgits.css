@@ -1,0 +1,128 @@
+@import url('all.css');
+.widgets {
+    flex: 0.3;
+    border-left: 1px solid var(--txtColor);
+  }
+  
+  .widgets__input, .comment__input {
+    display: flex;
+    align-items: center;
+    background-color: var(--bgColor);
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+    border: 1px solid var(--txtColor);
+  }
+  
+  .widgets__input input, .comment__input input {
+    border: none;
+    background-color: var(--bgColor);
+  }
+  .comment__input{
+    width: 80%;
+  }
+  .widgets__input input:active, .widgets__input input:hover, .widgets__input input:focus , .comment__input input:active, .comment__input input:hover, .comment__input input:focus {
+    border: none;
+    outline: none;
+    background-color: var(--bgColor);
+    color: var(--txtColor);
+  }
+  
+  .widgets__searchIcon {
+    color: gray;
+  }
+  
+  .widgets__widgetContainer {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: var(--bgColor);
+    border-radius: 20px;
+    border: .5px solid var(--txtColor);
+  }
+  
+  .widgets__widgetContainer h2 {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+.friend-requests, .notifications{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.frnd-rqst{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 100%;
+}
+
+.frnd-noti{
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  flex-direction: row;
+}
+.frnd-rqst img, .frnd-noti img{
+  width: 50px;
+  border-radius: 50%;
+}
+
+.frnd-data{
+  display: flex;
+  align-content: center;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.btn{
+    border: none;
+    color: var(--txtColor);
+    font-weight: 900;
+    border-radius: 30px;
+    width: 80px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.acpt{
+  background-color: var(--pColor);
+}
+
+.btn.rjct{
+  background-color: transparent;
+  border: 1px solid var(--txtColor);
+}
+
+
+.widgets{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  min-width: fit-content;
+    overflow-y: scroll;
+}   
+.widgets::-webkit-scrollbar {
+  display: none;
+}
+
+
+.none{
+  width: 100%;
+  text-align: start;
+  margin-top: 10px;
+  font-weight: bolder;
+}

@@ -1,0 +1,28 @@
+<div class="sidebar">
+    <h2 style="color: #0933C8;">Linkee</h2>
+    <a class="sidebarOption" href="{% url 'linkee' %}">
+      <span class="material-icons"> home </span>
+      <h2>Home</h2>
+    </a>
+
+    <a class="sidebarOption" href="#">
+      <span class="material-icons"> search </span>
+      <h2>Explore</h2>
+    </a>
+
+    <a class="sidebarOption" href="#">
+      <span class="material-icons"> list_alt </span>
+      <h2>Groups</h2>
+    </a>
+
+    <a class="sidebarOption active" href="#">
+      <span class="material-icons"> perm_identity </span>
+      <h2>Profile</h2>
+    </a>
+
+    <a class="sidebarOption" href="{% url 'logout' %}">
+      <span class="material-icons"> exit_to_app </span>
+      <h2>Log-out</h2>
+    </a>
+    <button class="sidebar__tweet">Tweet</button>
+  </div>

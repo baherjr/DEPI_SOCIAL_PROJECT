@@ -1,0 +1,55 @@
+@import url('all.css');
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebarOption .material-icons,
+.fa-twitter {
+  padding: 20px;
+}
+
+.sidebarOption h2 {
+  font-weight: 800;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.sidebarOption:hover {
+  background-color: var(--bgColor);
+  border-radius: 30px;
+  color: var(--pColor);
+  transition: color 100ms ease-out;
+}
+
+.sidebarOption.active {
+  color: var(--pColor);
+}
+
+.sidebar__tweet {
+  width: 100%;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  font-weight: 900;
+  border-radius: 30px;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.sidebar {
+  border-right: 1px solid var(--txtColor);
+  flex: 0.2;
+  min-width: 250px;
+  /* margin-top: 20px; */
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.icon{
+  font-weight: 800;
+  font-size: 40px;
+  margin-right: 20px;
+}

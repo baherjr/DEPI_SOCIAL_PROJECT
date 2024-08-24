@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'text_header.html' %}
+    <link rel="stylesheet" href="{% static 'css/sign_in.css' %}">
+    <title>linkee - Log in or sign up</title>
+</head>
+<body>
+    <div class="section">
+        <div class="text">
+            <h1 class="title">Linkee</h1>
+            <h3 class="sub-title">We help you connect with professional the people in your life.</h3>
+        </div>
+    <form action="" method="POST" class="form">
+        <p class="form-title">Sign in to your account</p>
+        {% csrf_token %}
+        <div class="input-container"><input type="text" name="username" placeholder="Username"></div>
+        <div class="input-container"><input type="password" name="password" placeholder="Password"></div>
+        <button  type="submit" class="submit">Login</button>
+        <p class="signup-link">No account?<a href="{% url 'register' %}">Sign up</a></p>
+    </form>
+    </div>
+</body>
+</html>

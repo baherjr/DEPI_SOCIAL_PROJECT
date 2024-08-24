@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linkee</title>
+    {% include 'text_header.html' %}
+    <link rel="stylesheet" href="{% static 'css/profiles_.css' %}">
+  </head>
+  <body>
+    {% include 'sidebar_profile.html' %}
+    <!-- profile start -->
+    <div class="feed">
+        <div class="feed__header">
+            <h2>Profile</h2>
+          </div>
+        <div class="profile">
+            <div class="profile-data">
+                <img
+            src="{{ profile.profileimg.url }}"
+            alt="my profile page"
+            class="profile-img"
+            />
+            <h2 class="user-name">{{ user.first_name }}&nbsp;{{ user.last_name }}&nbsp;<span class="material-icons post__badge">verified</span></h2>
+            <h5 class="id">@{{ user.username }}</h5>
+            <p class="bio">{{ profile.bio }}</p>
+            <div class="extra-data">
+              <h6>location: <a href="#">{{ user.address }}</a></h6>
+              <h6>job: {{ user.job }}</h6>
+              <h6>universty: {{ user.uni_name }}</h6>
+            </div>
+            <p class="birth-date">{{ user.date_of_birth }}<span class="material-icons birth-icon">calendar_today</span></p>
+            <div id="popup1" class="popup">
+                <div class="overlay"></div>
+                <div class="modal-content">
+                  <span class="close" onclick="togglePopup()">&times;</span>
+                  <h1>Friends</h1>
+                  <form method="post" class="widgets__input friend-search">
+                    <span class="material-icons widgets__searchIcon"> search </span>
+                    <input type="text" placeholder="Search Friends" />
+                  </form>
+                  <div id="friends-list" class="friend-list">
+                  </div>
+                </div>
+              </div>
+            <button class="friends-counts" id="profileId"  onclick="togglePopup()"><span id="count"></span>&nbsp; <span class="bold">Friends</span></button>
+            </div>
+        </div>
+        <div id="posts-container">
+        </div>
+    </div>
+    <!-- profile end -->
+    <!-- widgets starts -->
+    <div class="widgets">
+      <form method="post" class="widgets__input">
+        <span class="material-icons widgets__searchIcon"> search </span>
+        <input type="text" placeholder="Search Linkee" />
+      </form>
+
+      <div class="widgets__widgetContainer">
+        <h2>What's happening</h2>
+        <div class="notifications">
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+          <div class="frnd-noti">
+            <img src="../static/imgs/notKnownuser.svg" alt="userprfl">
+            <div class="frnd-data">
+              <h3><a href="#">username</a></h3>
+              <h5>@user</h5>
+            </div>
+            <div class="notification-type">
+              <h6>Lorem ipsum dolor sit amet.</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widgets__widgetContainer">
+        <h2>Who to follow</h2>
+        <div id="friend-requests-container" class="friend-requests">
+        </div>
+      </div>
+    </div>
+    <!-- widgets ends -->
+    <script src="{% static 'js/profiles___.js' %}"></script>
+    <script src="{% static 'js/all_.js' %}"></script>
+  </body>
+</html>

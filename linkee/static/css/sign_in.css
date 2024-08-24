@@ -1,0 +1,28 @@
+@import url('forms.css');
+
+.section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+}
+
+.title{
+    color: var(--pColor);
+    font-size: 70px;
+    margin: 0;
+}
+.sub-title{
+    font-weight: normal;
+    font-size: 35px;
+    margin: 0;
+}
+.text{
+    width: 40%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+

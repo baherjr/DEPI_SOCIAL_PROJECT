@@ -1,0 +1,29 @@
+:root{
+    --pColor:#0933C8;
+    --sColor:#192B6C;
+    --accent:#1735A1;
+    --bgColor:#080A11;
+    --txtColor:#E5E7EE;
+    --font: 'Rubik', sans-serif;
+    --contBgColor: #272933;
+    --dColor: #18181B;
+    --lighttxt:#101219;
+    --lighthover:#eef0f7;
+    --lighthover-fainted:#eef0f729;
+}
+
+body{
+    background-color: var(--bgColor);
+    color: var(--txtColor);
+    font-family: var(--font);
+}
+
+button{
+    cursor: pointer;
+}
+
+
+a {
+    text-decoration: none;
+    color: var(--txtColor);
+  }
