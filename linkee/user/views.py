@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as logger, logout as outer
 from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import Comment, Post
+from django.contrib.auth.decorators import login_required
 
 
 def login(request):
@@ -136,3 +139,35 @@ def get_friend_count(request):
     accepted_friend_requests = Friend.objects.filter(user=user, friend_status='Accepted')
     friend_count = accepted_friend_requests.count()
     return JsonResponse({'friend_count': friend_count})
+
+
+@login_required
+@require_POST
+def add_comment(request, post_id):
+    text = request.POST.get('text')
+    post = Post.objects.get(id=post_id)
+
+    if text and post:
+        comment = Comment.objects.create(user=request.user, text=text, post=post)
+        return JsonResponse({'success': True, 'comment': {
+            'username': comment.user.username,
+            'text': comment.text,
+            'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        }})
+
+    return JsonResponse({'success': False, 'error': 'Invalid input'}, status=400)
+
+@login_required
+def view_comments(request, post_id):
+    post = Post.objects.get(id=post_id)
+    comments = post.comments.all().order_by('-created_at')
+
+    comment_data = []
+    for comment in comments:
+        comment_data.append({
+            'username': comment.user.username,
+            'text': comment.text,
+            'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        })
+
+    return JsonResponse({'comments': comment_data})
