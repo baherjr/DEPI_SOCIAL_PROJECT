@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, get_user_model
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
+
 
 class LinkeeUser(AbstractUser):
     address = models.CharField(max_length=255, blank=True, null=True)
@@ -22,15 +24,3 @@ class Friend(models.Model):
     class Meta:
         unique_together = ('user', 'friend')
         
-
-
-User = get_user_model()
-
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
-
-    def __str__(self):
-        return f'Comment by {self.user.username} on {self.post}'

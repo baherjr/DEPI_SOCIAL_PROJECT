@@ -8,6 +8,8 @@ from datetime import datetime, timezone, timedelta
 from django.db.models import Q
 from django.views.decorators.http import require_POST
 from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+
 
 @login_required
 def view_my_posts(request):
@@ -129,5 +131,34 @@ def add_like(request, post_id):
 
 
 @login_required
+@require_POST
 def add_comment(request, post_id):
-    pass
+    text = request.POST.get('text')
+    post = Post.objects.get(id=post_id)
+
+    if text and post:
+        comment = Comment.objects.create(user=request.user, text=text, post=post)
+        return JsonResponse({'success': True, 'comment': {
+            'username': comment.user.username,
+            'text': comment.text,
+            'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        }})
+
+    return JsonResponse({'success': False, 'error': 'Invalid input'}, status=400)
+
+@login_required
+def view_comments(request, post_id):
+    post = Post.objects.get(id=post_id)
+    comments = post.comments.all().order_by('-created_at')
+
+    comment_data = []
+    for comment in comments:
+        comment_data.append({
+            'username': comment.user.username,
+            'text': comment.text,
+            'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        })
+
+    return JsonResponse({'comments': comment_data})
+
+
